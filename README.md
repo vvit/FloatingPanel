@@ -446,7 +446,7 @@ fpc.panGestureRecognizer.isEnabled = false
 Or use this `FloatingPanelControllerDelegate` method.
 
 ```swift
-func floatingPanelShouldBeginDragging(_ vc: FloatingPanelController) -> Bool {
+func floatingPanelShouldBeginDragging(_ vc: FloatingPanelController, location: CGPoint) -> Bool {
     return aCondition ?  false : true
 }
 ```

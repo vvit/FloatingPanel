@@ -390,7 +390,7 @@ class FloatingPanelCore: NSObject, UIGestureRecognizerDelegate {
                 "translation =  \(translation.y), location = \(location.y), velocity = \(velocity.y)")
 
             if interactionInProgress == false, isDecelerating == false,
-                let vc = viewcontroller, vc.delegate?.floatingPanelShouldBeginDragging(vc) == false {
+                let vc = viewcontroller, vc.delegate?.floatingPanelShouldBeginDragging(vc, location: location) == false {
                 return
             }
 
