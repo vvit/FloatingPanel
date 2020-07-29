@@ -213,6 +213,8 @@ open class FloatingPanelController: UIViewController {
         }
     }
 
+    public var bottomConstraint: NSLayoutConstraint?
+
     private var _contentViewController: UIViewController?
 
     private(set) var floatingPanel: FloatingPanelCore!
@@ -477,9 +479,11 @@ open class FloatingPanelController: UIViewController {
         NSLayoutConstraint.activate([
             self.view.topAnchor.constraint(equalTo: parent.view.topAnchor, constant: 0.0),
             self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor, constant: 0.0),
-            self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor, constant: 0.0),
-            self.view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: 0.0),
+            self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor, constant: 0.0)
             ])
+
+        bottomConstraint = self.view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: 0.0)
+        bottomConstraint?.isActive = true
 
         show(animated: animated) { [weak self] in
             guard let `self` = self else { return }
@@ -510,6 +514,7 @@ open class FloatingPanelController: UIViewController {
             #endif
 
             self.view.removeFromSuperview()
+            self.bottomConstraint = nil
 
             #if swift(>=4.2)
             self.removeFromParent()
